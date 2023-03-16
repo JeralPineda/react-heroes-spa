@@ -1,6 +1,13 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+
+  const onLogout = () => {
+    console.log('logout');
+    navigate('/login', { replace: true }); //remplaza la ruta y no permite regresar atrás
+  };
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-2">
       <Link className="navbar-brand" to="/">
@@ -27,7 +34,13 @@ export const Navbar = () => {
         <ul className="navbar-nav ml-auto">
           <span className="nav-item nav-link text-info">Jeral</span>
 
-          <button className="nav-item nav-link btn">Logout</button>
+          <button
+            //
+            className="nav-item nav-link btn"
+            onClick={onLogout}
+          >
+            Logout
+          </button>
         </ul>
       </div>
     </nav>
